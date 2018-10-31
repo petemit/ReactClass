@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import AddNewUser from './AddNewUser.js'
+import DisplayUserList from './DisplayUserList.js'
+import UserList from './User.js'
 
 /*
 This exercise will help you put together and practice all of the concepts you've
@@ -11,6 +14,12 @@ The instructions for this project are located in the `instructions.md` file.
 */
 
 class App extends Component {
+  state = {
+    userList : [],
+    hidingGamesPlayed : false
+
+
+  }
   render() {
     return (
       <div className="App">
@@ -18,6 +27,9 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
+
+      <AddNewUser/>
+        
       </div>
     );
   }
