@@ -8,7 +8,10 @@ class DisplayUserList extends Component {
                 <ol>
                     {this.props.userList.map(user =>
                         (
-                            <li key={user} >{user}</li>
+                            <li key={user} >
+                            
+                            {user} has played {this.props.hidingGamesPlayed ? 0 : "*"} games
+                            </li>
                         )
                     )}
                 </ol>
