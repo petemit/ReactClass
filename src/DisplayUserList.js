@@ -1,6 +1,22 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
-class DisplayUserList {
+class DisplayUserList extends Component {
+    render() {
+
+        return (
+            <div>
+                <ol>
+                    {this.props.userList.map(user =>
+                        (
+                            <li key={user} >{user}</li>
+                        )
+                    )}
+                </ol>
+
+            </div>
+
+        )
+    }
 
 }
 
