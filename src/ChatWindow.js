@@ -2,7 +2,14 @@ import React, {Component} from 'react'
 import AddNewMessage from './AddNewMessage';
 import PropTypes from 'prop-types'
 class ChatWindow extends Component {
+
+    handleAddMessage = (message) => {
+        console.log("ahem " + message)
+        const user = this.props.username;
+        this.props.handleAddMessage(user, message)
+    }
     render() {
+       
         return (
             <div className="chat-window">
             <h2>Super Awesome Chat</h2>
@@ -20,7 +27,7 @@ class ChatWindow extends Component {
               ))}
             </ul>
 
-            <AddNewMessage handleAddMessage = {this.props.handleAddMessage} />
+            <AddNewMessage handleAddMessage = {this.handleAddMessage} />
           </div>
 
         )

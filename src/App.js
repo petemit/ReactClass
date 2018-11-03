@@ -18,11 +18,23 @@ const messages = [
 ];
 
 class App extends Component {
+  state = {
+    messages: []
+  }
 
-  render() {
-    state = {
-      messages : []
+  handleAddMessage = (username, message) => {
+    const newMessage = {
+      ["username"] : username,
+      ["text"] : message,
     }
+    this.setState(oldState => ({
+      messages: oldState.messages.concat([newMessage]),
+    }))
+    console.log("say there dear boy")
+    console.log(...messages)
+  }
+  render() {
+
 
     return (
       <div className="App">
@@ -31,8 +43,8 @@ class App extends Component {
           <h1 className="App-title">ReactND - Coding Practice</h1>
         </header>
         <div className="container">
-         <ChatWindow username ={this.users[0].username} handleAddMessage ={() => handleAddMessage}  messages={this.messages}/>
-         <ChatWindow username ={this.users[1].username} handleAddMessage ={() => handleAddMessage}  messages={this.messages}/>
+          <ChatWindow username={users[0].username} handleAddMessage={this.handleAddMessage} messages={this.state.messages} />
+          <ChatWindow username={users[1].username} handleAddMessage={this.handleAddMessage} messages={this.state.messages} />
         </div>
       </div>
     );

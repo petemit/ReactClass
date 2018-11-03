@@ -6,31 +6,36 @@ class AddNewMessage extends Component {
     }
 
     isNewMessageBlank = () => (
-        newMessage.length == 0
+        this.state.newMessage.length === 0
     )
 
-    handleAddMessage = () => (
-        this.props.handleAddMessage(newMessage)
-    )
-
-    handleTextEntry = (event) => {
-        this.setState(oldState => {
-            newMessage: event.target.value
-        })
+    handleAddMessage = (event) => {
+        event.preventDefault();
+        this.props.handleAddMessage(this.state.newMessage);
+        this.setState({
+            newMessage : ""
+        });
+        console.log("hey what?");
     }
+
+    handleTextEntry = (event => {
+        this.setState({ newMessage: event.target.value });
+    })
 
     render() {
         return (
             <div>
-                <form className="input-group">
+                <form className="input-group"
+                    onSubmit={this.handleAddMessage}>
                     <input type="text" className="form-control" placeholder="Enter your message..."
-                        onChange={(event) => handleTextEntry}
+                    value = {this.state.newMessage}
+                        onChange={(event) => this.handleTextEntry(event)}
                     />
                     <div className="input-group-append">
-                        <button className="btn submit-button" disabled={() => this.isNewMessageBlank
-                        }
-                            onClick={() => handleAddMessage}
-                            >
+                        <button className="btn submit-button" disabled={this.isNewMessageBlank()}
+
+
+                        >
                             SEND
         </button>
                     </div>
