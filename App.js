@@ -1,5 +1,5 @@
 import React from "react";
-import { getMetricMetaInfo } from "./utils/helpers";
+import { getMetricMetaInfo, setLocalNotification } from "./utils/helpers";
 import {
     Text,
     View,
@@ -20,12 +20,16 @@ import {
     createMaterialTopTabNavigator,
     createStackNavigator,
 } from "react-navigation";
-import { purple, white } from "./utils/colors";
+import { purple, white } from "./utils/colors"; 
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import HistoryComponent from './components/History';
 import AddEntryComponent from './components/AddEntry';
 import { Constants } from 'expo'
 import EntryDetail from './components/EntryDetail';
+import Live from './components/Live';
+
+import {  } from './utils/helpers'
+
 
 function UdacityStatusBar ({ backgroundColor, ...props}) {
     return (
@@ -75,12 +79,22 @@ const tabBarOptions = {
     }
 };
 
+const LiveComponent = {
+    screen: Live,
+    navigationOptions:  {
+        tabBarLabel: 'Live',
+        tabBarIcon: ({tintColor}) => <Ionicons name="ios-speedometer" size={30} color={tintColor} />
+    }
+
+}
+
 const Tabs =
     Platform.OS === "ios"
         ? createBottomTabNavigator(
               {
                   History: History,
-                  AddEntry: AddEntry
+                  AddEntry: AddEntry,
+                  Live: LiveComponent
               },
               { navigationOptions: navigationOptions,
                 tabBarOptions: tabBarOptions }
@@ -88,7 +102,8 @@ const Tabs =
         : createMaterialTopTabNavigator(
               {
                   History: History,
-                  AddEntry: AddEntry
+                  AddEntry: AddEntry,
+                  Live: LiveComponent
               },
               { navigationOptions: navigationOptions,
                 tabBarOptions: tabBarOptions }
@@ -112,6 +127,9 @@ const MainNavigator = createStackNavigator({
 const AppContainer = createAppContainer(MainNavigator);
 
 export default class App extends React.Component {
+    componentDidMount() {
+        setLocalNotification()
+    }
     render() {
         return (
             <Provider store={createStore(reducer)}>

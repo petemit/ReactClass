@@ -2,6 +2,7 @@
   "expo": {
     "name": "UdaciFitness",
     "slug": "UdaciFitness",
+    "description": "The best triathlon training app in the ... world?",
     "privacy": "public",
     "sdkVersion": "31.0.0",
     "platforms": [
@@ -10,7 +11,16 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "https://tylermcginnis.com/udacifitness-512.png",
+    "notification": {
+      "icon": "https://tylermcginnis.com/udacifitness-45.png"
+    },
+    "ios": {
+     "bundleIdentifier": "org.udacifitness.exp"
+    },
+    "android": {
+     "package": "org.udacifitness.exp"
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
